@@ -8,6 +8,12 @@ database_files/
 log/
 *.log
 
+# File store path
+files_store_path_common/
+
+# State files
+*-state.json
+
 # Docker volumes and data
 market_persistence/
 

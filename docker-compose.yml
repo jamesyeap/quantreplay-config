@@ -3,7 +3,7 @@ networks:
     driver: bridge
 
 services:
-  XETRA:
+  XNAS:
     image: ghcr.io/quod-financial/deploy_marketsim:latest
     platform: linux/x86_64
     container_name: XNAS
@@ -50,7 +50,7 @@ services:
     networks:
       - market-simulator-net
     environment:
-      - SIMULATOR_LIQUIBASE_CONTEXT="market-simulator,schema,demo"
+      - SIMULATOR_LIQUIBASE_CONTEXT="market-simulator,schema,demo,xnas"
     depends_on:
       database:
         condition: service_healthy

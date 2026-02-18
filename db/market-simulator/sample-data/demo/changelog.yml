@@ -1,6 +1,11 @@
 databaseChangeLog:
   - include:
+      context: "xetra"
       file: xetra/changelog.yml
+      relativeToChangelogFile: true
+  - include:
+      context: "xnas"
+      file: xnas/changelog.yml
       relativeToChangelogFile: true
 
   - changeSet:
