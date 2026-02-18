@@ -1,6 +1,6 @@
 #!/bin/sh
 
-EXCHANGE="NAS"
+EXCHANGE="XNAS"
 DATE="2026FEB18"
 
 curl -X POST http://localhost:9050/api/datasources \
