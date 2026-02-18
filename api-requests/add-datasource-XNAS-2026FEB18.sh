@@ -9,7 +9,7 @@ curl -X POST http://localhost:9050/api/datasources \
     \"enabled\": true,
     \"name\": \"$EXCHANGE-$DATE\",
     \"venueId\": \"$EXCHANGE\",
-    \"connection\": \"/market-simulator/quod/data/rodata/$EXCHANGE/$DATE.csv\",
+    \"connection\": \"/market-simulator/quod/data/market-data/$EXCHANGE/$DATE.csv\",
     \"format\": \"CSV\",
     \"type\": \"OrderBook\",
     \"repeat\": true,

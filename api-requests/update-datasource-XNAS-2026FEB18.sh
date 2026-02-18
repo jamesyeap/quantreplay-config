@@ -12,7 +12,7 @@ curl -X PUT "http://localhost:9050/api/datasources/$ID" \
     \"enabled\": true,
     \"name\": \"$EXCHANGE-$DATE\",
     \"venueId\": \"$EXCHANGE\",
-    \"connection\": \"/market-simulator/quod/data/rodata/$EXCHANGE/$DATE.csv\",
+    \"connection\": \"/market-simulator/quod/data/market-data/$EXCHANGE/$DATE.csv\",
     \"format\": \"CSV\",
     \"type\": \"OrderBook\",
     \"repeat\": true,
