@@ -1,0 +1,56 @@
+networks:
+  market-simulator-net:
+    driver: bridge
+
+services:
+  XETRA:
+    image: ghcr.io/quod-financial/deploy_marketsim:latest
+    platform: linux/x86_64
+    container_name: XNAS
+    networks:
+      - market-simulator-net
+    ports:
+      - "9050:9050" # Port to send REST API requests
+      - "9051:9051" # Port to send FIX messages
+    volumes:
+      - ./:/market-simulator/quod/data/
+    environment:
+      - INSTANCE_ID=XNAS
+      - PREFIX=QUOD
+    depends_on:
+      liquibase:
+        condition: service_completed_successfully
+
+  database:
+    image: ghcr.io/quod-financial/postgres_marketsim:latest
+    platform: linux/x86_64
+    container_name: market-simulator-database
+    networks:
+      - market-simulator-net
+    ports:
+      - 15432:5432
+    volumes:
+      - ./database_files:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=simdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --user=postgres --dbname=simdb"]
+      retries: 2
+      interval: 5s
+      timeout: 10s
+
+  liquibase:
+    image: ghcr.io/quod-financial/liquibase:latest
+    platform: linux/x86_64
+    container_name: market-simulator-liquibase
+    volumes:
+      - ./db:/liquibase/project
+    networks:
+      - market-simulator-net
+    environment:
+      - SIMULATOR_LIQUIBASE_CONTEXT="market-simulator,schema,demo"
+    depends_on:
+      database:
+        condition: service_healthy

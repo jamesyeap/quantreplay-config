@@ -1,0 +1,55 @@
+# Database files
+database_files/
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+log/
+*.log
+
+# Docker volumes and data
+market_persistence/
+
+# Backup files
+*.bk
+*-bk/
+docker-compose.yml.bk
+api-requests-bk/
+cfg-bk/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# PostgreSQL specific
+*.pid
+postmaster.pid
+postmaster.opts
+pg_internal.init
